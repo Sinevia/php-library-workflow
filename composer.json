@@ -1,0 +1,19 @@
+{
+    "name": "sinevia/php-library-workflow",
+    "description": "PHP Library Workflow",
+    "type": "library",
+    "keywords": ["workflow", "library", "php", "sinevia"],    
+    "homepage": "http://github.com/sinevia/php-library-workflow",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Milan Lesichkov",
+            "email": "lesichkovm@gmail.com",
+            "homepage": "http://lesichkov.co.uk",
+            "role": "Lead Developer"
+        }
+    ],
+    "autoload": {
+        "files": ["src/Workflow.php","src/Step.php"]
+    }
+}
