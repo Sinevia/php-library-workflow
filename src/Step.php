@@ -20,7 +20,7 @@ class Step {
     public $type = "normal";
     public $title = "";
     public $description = "";
-    public $resonsible = "Admin";
+    public $responsible = "Admin";
 
     function __construct($name) {
         $this->name = $name;
