@@ -1,6 +1,15 @@
 # PHP Workflow
 
-An easy and very pragmatic multistep workflow system.
+An easy and very pragmatic multistep workflow system. As in real life steps can be skipped. 
+
+## Workflow Steps ##
+
+The steps are a very basic object and can be easily extended with what is needed from each workflow. This can be done either by using dynamibc properties, or extending the Step class.
+
+Though the sequence in which the steps are added is not important for the functioning of the workflow, it is impotant if you want to use progress feature. Thus always try to add the steps in logical sequence.
+
+## Workflow Progress ##
+The worflow progress is a nice feature, which allows to show the progress in a progress bar, or a pie chart. It is calculated using the sequence in which the steps are added to the workflow. For instance, if a workflow has 100 steps, and you are on step added as 70th in he sequence, all the steps added before are considered "completed" and the overall completion of the workflow is at 70%.
 
 ## Features ##
 
@@ -10,6 +19,7 @@ An easy and very pragmatic multistep workflow system.
 - Import from saved state
 - Extendable
 - Unassuming
+- Step metadata
 
 ## Example ##
 
