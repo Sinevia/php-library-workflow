@@ -13,7 +13,9 @@ An easy and very pragmatic multistep workflow system.
 
 ## Example ##
 
-```
+This is just an example implementation. Its probably too much for simpler workflows.
+
+```php
 // Create application
 $aplication = new Application;
 
@@ -25,8 +27,11 @@ if(sendEmailToApplicant() == true){
     $applicationWorkflow->completeStepStartApplication();
 }
 
-// Check what is the cyrrent step
+// Check what is the current step
 echo $applicationWorkflow->getCurrentStep()->title;
+
+// Check what is the current step
+echo $applicationWorkflow->getProgress();
 
 
 class ApplicationWorkflow extends Workflow {
