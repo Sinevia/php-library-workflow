@@ -92,6 +92,13 @@ class Workflow {
     public function getSteps() {
         return $this->steps;
     }
+    
+    public function getStep($name) {
+        if (isset($this->steps[$name]) {
+            return $this->steps[$name];
+        }
+        return null;
+    }
 
     public function getStepMeta($step, $key) {
         $stepName = is_string($step) ? $step : $step->name;
