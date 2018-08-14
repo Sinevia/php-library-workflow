@@ -1,4 +1,5 @@
 <?php
+
 // ========================================================================= //
 // SINEVIA PUBLIC                                        http://sinevia.com  //
 // ------------------------------------------------------------------------- //
@@ -92,9 +93,9 @@ class Workflow {
     public function getSteps() {
         return $this->steps;
     }
-    
+
     public function getStep($name) {
-        if (isset($this->steps[$name]) {
+        if (isset($this->steps[$name])) {
             return $this->steps[$name];
         }
         return null;
