@@ -22,12 +22,16 @@ class Workflow {
         'history' => [],
         'step_details' => [],
     ];
+    
     public $steps = [];
 
     function __construct() {
         
     }
 
+    /**
+     * Adds a step to the workflow
+     */
     public function addStep($step) {
         $this->steps[$step->name] = $step;
         if ($this->state['current_step'] == null) {
@@ -35,6 +39,10 @@ class Workflow {
         }
     }
 
+    /**
+     * Returns the current step of the workflow
+     * @return Step|null the current step or null otherwise
+     */
     function getCurrentStep() {
         $stepName = $this->state['current_step'];
         if ($stepName == null) {
@@ -43,6 +51,11 @@ class Workflow {
         return $this->steps[$stepName];
     }
 
+    /**
+     * Sets the current step of the workflow
+     * @param Step|string the Step instance or the name (key) of the Step
+     * @return void
+     */
     function setCurrentStep($nextStep) {
         /* Old step log as completed */
         $currentStep = $this->getCurrentStep();
@@ -60,6 +73,11 @@ class Workflow {
         $this->state['step_details'][$nextStepName]['started'] = date('Y-m-d');
     }
 
+    /**
+     * Returns true if the specified step is current, false otherwise
+     * @param Step|string the Step instance or the name (key) of the Step
+     * @return void
+     */
     function isStepCurrent($step) {
         $stepName = is_string($step) ? $step : $step->name;
         if ($this->state['current_step'] == $stepName) {
