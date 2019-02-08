@@ -3,7 +3,7 @@
 // ========================================================================= //
 // SINEVIA PUBLIC                                        http://sinevia.com  //
 // ------------------------------------------------------------------------- //
-// COPYRIGHT (c) 2008-2018 Sinevia Ltd                   All rights reserved //
+// COPYRIGHT (c) 2008-2019 Sinevia Ltd                   All rights reserved //
 // ------------------------------------------------------------------------- //
 // LICENCE: All information contained herein is, and remains, property of    //
 // Sinevia Ltd at all times.  Any intellectual and technical concepts        //
@@ -60,7 +60,7 @@ class Workflow {
         /* Old step log as completed */
         $currentStep = $this->getCurrentStep();
         if ($currentStep != null) {
-            $this->state['step_details'][$currentStep->name]['completed'] = date('Y-m-d');
+            $this->state['step_details'][$currentStep->name]['completed'] = date('Y-m-d H:i:s');
         }
 
         /* New step log as started */
@@ -128,6 +128,20 @@ class Workflow {
             return null;
         }
         return $this->state['step_details'][$stepName][$key];
+    }
+    
+    /**
+     * Sets the current step of the workflow
+     * @param Step|string the Step instance or the name (key) of the Step
+     * @return void
+     */
+    function markStepAsCompleted($step) {
+        $stepName = is_string($step) ? $step : $step->name;
+        if (isset($this->state['step_details'][$stepName]) == false) {
+            return false;
+        }
+        
+        $this->state['step_details'][$stepName]['completed'] = date('Y-m-d H:i:s');
     }
 
     public function setStepMeta($step, $key, $value) {
