@@ -3,7 +3,7 @@
 // ========================================================================= //
 // SINEVIA PUBLIC                                        http://sinevia.com  //
 // ------------------------------------------------------------------------- //
-// COPYRIGHT (c) 2008-2019 Sinevia Ltd                   All rights reserved //
+// COPYRIGHT (c) 2008-2022 Sinevia Ltd                   All rights reserved //
 // ------------------------------------------------------------------------- //
 // LICENCE: All information contained herein is, and remains, property of    //
 // Sinevia Ltd at all times.  Any intellectual and technical concepts        //
@@ -103,19 +103,26 @@ class Workflow {
     function getProgress() {
         $stepName = $this->state['current_step'];
         $currentStepPosition = array_search($stepName, array_keys($this->steps));
+
         $pending = count($this->steps) - ($currentStepPosition);
         if ($this->isStepComplete($stepName)) {
-            $pending++;
+            $pending--;
         }
-        $percents = ($currentStepPosition / count($this->steps)) * 100;
+
+        $completed = $currentStepPosition;
         if ($this->isStepComplete($stepName)) {
-            $percents = (($currentStepPosition + 1) / count($this->steps)) * 100;
+            $completed++;
         }
+
+        $pending = count($this->steps) - $completed;
+
+        $percents = ($completed / count($this->steps)) * 100;
+
         return [
             'total' => count($this->steps),
-            'completed' => $currentStepPosition,
+            'completed' => $completed,
             'current' => $currentStepPosition,
-            'pending' => count($this->steps) - ($currentStepPosition),
+            'pending' => $pending,
             'percents' => $percents
         ];
     }
@@ -176,5 +183,4 @@ class Workflow {
     function toString() {
         return json_encode($this->state);
     }
-
 }
